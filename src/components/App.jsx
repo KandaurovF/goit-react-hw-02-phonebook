@@ -60,7 +60,10 @@ export class App extends Component {
             onDeleteContact={this.deleteContact}
           />
         ) : (
-          <ContactList contacts={filteredContacts} />
+          <ContactList
+            contacts={filteredContacts}
+            onDeleteContact={this.deleteContact}
+          />
         )}
       </div>
     );
