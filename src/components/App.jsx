@@ -10,7 +10,7 @@ export class App extends Component {
   };
 
   addContact = formData => {
-    const { name, number } = formData;
+    const { name } = formData;
     const existingContact = this.state.contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
