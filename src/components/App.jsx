@@ -2,6 +2,8 @@ import { Component } from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 export class App extends Component {
   state = {
@@ -12,6 +14,7 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+    showFilter: false,
   };
 
   addContact = formData => {
@@ -29,7 +32,7 @@ export class App extends Component {
     }
   };
 
-  handleSearh = event => {
+  handleSearch = event => {
     const { value } = event.target;
     this.setState({ filter: value });
   };
@@ -40,8 +43,14 @@ export class App extends Component {
     }));
   };
 
+  toggleFilter = () => {
+    this.setState(prevState => ({
+      showFilter: !prevState.showFilter,
+    }));
+  };
+
   render() {
-    const { contacts, filter } = this.state;
+    const { contacts, filter, showFilter } = this.state;
 
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -52,8 +61,13 @@ export class App extends Component {
         <h1 className="main__heading">Phonebook</h1>
         <ContactForm onFormSubmit={this.addContact} />
 
-        <h2 className="secondary__heading">Contacts</h2>
-        <Filter value={filter} onChange={this.handleSearh} />
+        <h2 className="secondary__heading" onClick={this.toggleFilter}>
+          Contacts
+          <FontAwesomeIcon icon={faSearch} className="searchIcon" />
+        </h2>
+
+        {showFilter && <Filter value={filter} onChange={this.handleSearch} />}
+
         {filter === '' ? (
           <ContactList
             contacts={contacts}

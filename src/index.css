@@ -20,6 +20,12 @@ p {
   margin: 0;
 }
 
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .wrapper {
   width: 300px;
   padding: 30px;
@@ -38,4 +44,12 @@ p {
 
 .secondary__heading {
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchIcon {
+  width: 15px;
+  height: 15px;
 }
